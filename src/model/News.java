@@ -8,8 +8,15 @@ public class News {
 	
 	
 	public News() {
-	}
+	}	
 	
+	public News(int id, String title, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -28,7 +35,5 @@ public class News {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
 	
 }
