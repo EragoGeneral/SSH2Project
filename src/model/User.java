@@ -2,17 +2,38 @@ package model;
 
 public class User {
 
+	private int ID;
 	private String FirstName;
 	private String LastName;
 	private String Phone;
 	private String Email;
 	
+	public User(){
+	}
+	
+	public User(int ID, String firstName, String lastName, String phone, String email) {
+		super();
+		this.ID = ID; 
+		this.FirstName = firstName;
+		this.LastName = lastName;
+		this.Phone = phone;
+		this.Email = email;
+	}
+	
 	public User(String firstName, String lastName, String phone, String email) {
 		super();
-		FirstName = firstName;
-		LastName = lastName;
-		Phone = phone;
-		Email = email;
+		this.FirstName = firstName;
+		this.LastName = lastName;
+		this.Phone = phone;
+		this.Email = email;
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 	public String getFirstName() {

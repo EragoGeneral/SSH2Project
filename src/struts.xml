@@ -44,7 +44,17 @@
     		<result name="error">/error.jsp</result>
     	</action>
     </package>
-
+    
+     
+    <package name="user" extends="json-default">
+    	<action name="userAction!*" class="user.controller.UserManagementAction" method="{1}">
+    		<result type="json">
+    			<param name="root">jsonObject</param>
+    		</result>
+    	</action>
+    </package>
+	 
+	 
 </struts>
 
 <!-- END SNIPPET: xworkSample -->

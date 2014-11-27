@@ -1,17 +1,12 @@
 package lee;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import model.User;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-
-import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,6 +17,8 @@ public class LoginRegistAction extends ActionSupport{
 	private String password;
 	private String tips;
 	private JSONObject obj;
+	
+	private User user;
 	
 	public String getUsername() {
 		return username;
@@ -91,4 +88,11 @@ public class LoginRegistAction extends ActionSupport{
 		this.obj = obj;
 	}
 	
+	public User getUser(){
+		return user;
+	}
+	
+	public void setUser(User user){
+		this.user = user;
+	}
 }

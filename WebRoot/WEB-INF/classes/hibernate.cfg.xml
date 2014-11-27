@@ -31,6 +31,7 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<mapping resource="News.hbm.xml" />
+		<mapping resource="User.hbm.xml" />
 
 	</session-factory>
 

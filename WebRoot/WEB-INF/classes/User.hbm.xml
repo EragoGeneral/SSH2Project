@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="model.User" table="system_users">
+		<id name="ID" unsaved-value="null">
+			<column name="User_ID" />
+			<generator class="identity" />
+		</id>
+		<property name="FirstName">
+			<column name="User_firstname"></column>
+		</property>
+		<property name="LastName">
+			<column name="User_lastname"></column>
+		</property>
+		<property name="Phone">
+			<column name="User_phone"></column>
+		</property>
+		<property name="Email">
+			<column name="User_email"></column>
+		</property>
+	</class>
+</hibernate-mapping>    

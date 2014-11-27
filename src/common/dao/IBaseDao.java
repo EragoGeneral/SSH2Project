@@ -17,4 +17,6 @@ public interface IBaseDao {
 	public List getList(String hql);
 		
 	public List findByPage(final String sql, final int offset, final int pageSize);
+	
+	public void bulkUpdate(String hql, Object[] values);
 }

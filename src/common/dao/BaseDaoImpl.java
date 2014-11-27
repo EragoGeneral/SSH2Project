@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.exception.DataException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -39,6 +41,8 @@ public class BaseDaoImpl extends HibernateDaoSupport implements IBaseDao {
 		return getHibernateTemplate().find(hql);
 	}
 	
+	
+	
 	@Override
 	public List findByPage(final String sql, final int offset, final int pageSize) {
 		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
@@ -54,6 +58,11 @@ public class BaseDaoImpl extends HibernateDaoSupport implements IBaseDao {
 		});
 		
 		return list;
+	}
+
+	@Override
+	public void bulkUpdate(String hql, Object[] values) throws DataAccessException{
+		getHibernateTemplate().bulkUpdate(hql, values);		
 	}
 	
 	

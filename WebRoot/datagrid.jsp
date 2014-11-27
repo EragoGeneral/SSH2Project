@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="script/jquery.easyui.min.js"></script>
 </head>
 <body>
-	<h2>Basic CRUD Application</h2>
+	<h2>sBasic CRUD Application</h2>
 	<s:property value="results"/>
 	<br>
 	<s:property value="tips"/>
@@ -21,7 +21,7 @@
 	
 	
 	<table id="dg" title="My Users" class="easyui-datagrid" style="width:700px;height:250px"
-			url="easyui.action"
+			url="userAction!LoadUserTable" idField="ID" 
 			toolbar="#toolbar" pagination="true"
 			rownumbers="true" fitColumns="true" singleSelect="true">
 		<thead>
@@ -45,19 +45,20 @@
 		<form id="fm" method="post" novalidate>
 			<div class="fitem">
 				<label>First Name:</label>
-				<input name="firstName" class="easyui-textbox" required="true">
+				<input type="hidden" id="id" name="user.ID" />
+				<input id="firstname" name="user.FirstName" class="easyui-textbox" required="true">
 			</div>
 			<div class="fitem">
 				<label>Last Name:</label>
-				<input name="lastName" class="easyui-textbox" required="true">
+				<input id="lastname" name="user.LastName" class="easyui-textbox" required="true">
 			</div>
 			<div class="fitem">
 				<label>Phone:</label>
-				<input name="phone" class="easyui-textbox">
+				<input id="phone" name="user.Phone" class="easyui-textbox">
 			</div>
 			<div class="fitem">
 				<label>Email:</label>
-				<input name="email" class="easyui-textbox" validType="email">
+				<input id="email" name="user.Email" class="easyui-textbox" validType="email">
 			</div>
 		</form>
 	</div>
@@ -70,24 +71,30 @@
 		function newUser(){
 			$('#dlg').dialog('open').dialog('setTitle','New User');
 			$('#fm').form('clear');
-			url = 'save_user.php';
+			//url = 'save_user.php';
 		}
 		function editUser(){
 			var row = $('#dg').datagrid('getSelected');
+			console.log(row);
 			if (row){
+				//url = 'userAction!EditUser?UserID='+row.ID;
 				$('#dlg').dialog('open').dialog('setTitle','Edit User');
-				$('#fm').form('load',row);
-				url = 'update_user.php?id='+row.id;
+				$("#id").val(row.ID);
+				$("#firstname").textbox('setValue',row.firstName);
+				$("#lastname").textbox('setValue',row.lastName);
+				$("#phone").textbox('setValue',row.phone);
+				$("#email").textbox('setValue',row.email);
+				//$('#fm').form('load',row);				
 			}
 		}
 		function saveUser(){
 			$('#fm').form('submit',{
-				url: url,
+				url: 'userAction!SaveUser',
 				onSubmit: function(){
 					return $(this).form('validate');
 				},
-				success: function(result){
-					var result = eval('('+result+')');
+				success: function(result){														
+					var result = eval('('+result+')');										
 					if (result.errorMsg){
 						$.messager.show({
 							title: 'Error',
@@ -105,7 +112,7 @@
 			if (row){
 				$.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
 					if (r){
-						$.post('destroy_user.php',{id:row.id},function(result){
+						$.post('userAction!DeleteUser',{UserID:row.ID},function(result){
 							if (result.success){
 								$('#dg').datagrid('reload');	// reload the user data
 							} else {

@@ -19,10 +19,20 @@
 	<bean id="validservice" class="service.ValidServiceImpl">
 		<property name="newdao" ref="NewsDao"/>
 	</bean>
-	<bean id="validAction" class="integrity.ValidAction">
+	
+	<!-- <bean id="validAction" class="integrity.ValidAction">
 		<property name="vs" ref="validservice" />
 	</bean>
+	-->
 	
+	
+	<bean id="userDao" class="user.dao.UserMgtDaoImpl" parent="baseDao"></bean>
+	 
+	<bean id="userService" class="user.service.UserMgtServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	 
+	 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost/ebook" />
@@ -41,6 +51,7 @@
 		<property name="mappingResources">
 			<list>
 				<value>News.hbm.xml</value>
+				<value>User.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
