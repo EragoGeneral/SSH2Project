@@ -17,7 +17,7 @@ public class UserMgtServiceImpl implements IUserMgtService{
 	}
 
 	public void SaveUser(User user) {
-		if(new Integer(user.getID()) != null){
+		if(null != new Integer(user.getID()) && user.getID() != 0){
 			userDao.UpdateUser(user);
 		}else{
 			userDao.SaveUser(user);
