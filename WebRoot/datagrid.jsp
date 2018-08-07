@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="script/jquery.easyui.min.js"></script>
 </head>
 <body>
-	<h2>sBasic CRUD Application</h2>
+	<h2>User Management</h2>
 	<s:property value="results"/>
 	<br>
 	<s:property value="tips"/>

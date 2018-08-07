@@ -45,7 +45,6 @@ public class UserManagementAction extends ActionSupport {
 	}
 	
 	public String EditUser() throws Exception{
-		System.out.println(UserID);
 		
 		return SUCCESS;
 	}
@@ -56,7 +55,7 @@ public class UserManagementAction extends ActionSupport {
 		if(jsonObject == null){
 			jsonObject = new JSONObject();
 		}
-		jsonObject.accumulate("success", false);
+		jsonObject.accumulate("success", true);
 		return SUCCESS;
 	}
 	
