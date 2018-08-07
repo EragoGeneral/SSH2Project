@@ -45,7 +45,7 @@ public class UserManagementAction extends ActionSupport {
 	}
 	
 	public String EditUser() throws Exception{
-		
+
 		return SUCCESS;
 	}
 

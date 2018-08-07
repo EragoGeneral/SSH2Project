@@ -11,20 +11,18 @@
 	<link rel="stylesheet" type="text/css" href="css/demo.css">
 	<script type="text/javascript" src="script/jquery.min.js"></script>
 	<script type="text/javascript" src="script/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="script/datagrid/BaseCRUD.js" charset="GBK"></script>
 </head>
 <body>
-<<<<<<< HEAD
-	<h2>User Management</h2>
-=======
 	<h2>Basic CRUD Application</h2>
->>>>>>> 054f257cfb5ff49836d68a27d9e97b2ebb95516c
 	<s:property value="results"/>
 	<br>
 	<s:property value="tips"/>
 	<p>Click the buttons on datagrid toolbar to do crud actions.</p>
 	
+	<table id="dg"></table>
 	
-	
+	<!-- 
 	<table id="dg" title="My Users" class="easyui-datagrid" style="width:700px;height:250px"
 			url="userAction!LoadUserTable" idField="ID" 
 			toolbar="#toolbar" pagination="true"
@@ -43,6 +41,7 @@
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
 	</div>
+	 -->
 	
 	<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
 			closed="true" buttons="#dlg-buttons">
@@ -71,71 +70,6 @@
 		<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
 	</div>
-	<script type="text/javascript">
-		var url;
-		
-		function newUser(){
-			$('#dlg').dialog('open').dialog('setTitle','New User');
-			$('#fm').form('clear');
-			//url = 'save_user.php';
-		}
-		
-		function editUser(){
-			var row = $('#dg').datagrid('getSelected');
-			console.log(row);
-			if (row){
-				//url = 'userAction!EditUser?UserID='+row.ID;
-				$('#dlg').dialog('open').dialog('setTitle','Edit User');
-				$("#id").val(row.ID);
-				$("#firstname").textbox('setValue',row.firstName);
-				$("#lastname").textbox('setValue',row.lastName);
-				$("#phone").textbox('setValue',row.phone);
-				$("#email").textbox('setValue',row.email);
-				//$('#fm').form('load',row);				
-			}
-		}
-		
-		function saveUser(){
-			$('#fm').form('submit',{
-				url: 'userAction!SaveUser',
-				onSubmit: function(){
-					return $(this).form('validate');
-				},
-				success: function(result){														
-					var result = eval('('+result+')');										
-					if (result.errorMsg){
-						$.messager.show({
-							title: 'Error',
-							msg: result.errorMsg
-						});
-					} else {
-						$('#dlg').dialog('close');		// close the dialog
-						$('#dg').datagrid('reload');	// reload the user data
-					}
-				}
-			});
-		}
-		
-		function destroyUser(){
-			var row = $('#dg').datagrid('getSelected');
-			if (row){
-				$.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
-					if (r){
-						$.post('userAction!DeleteUser',{UserID:row.ID},function(result){
-							if (result.success){
-								$('#dg').datagrid('reload');	// reload the user data
-							} else {
-								$.messager.show({	// show error message
-									title: 'Error',
-									msg: result.errorMsg
-								});
-							}
-						},'json');
-					}
-				});
-			}
-		}
-	</script>
 	<style type="text/css">
 		#fm{
 			margin:0;
